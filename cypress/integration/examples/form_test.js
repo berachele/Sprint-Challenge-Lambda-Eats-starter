@@ -23,3 +23,25 @@ describe("Testing that we can select multiple toppings", function(){
     })//end of it function
 
 })//end of describe
+
+describe("Testing that we can submit form", function(){
+    beforeEach(function(){
+        cy.visit("http://localhost:3000/pizza")
+    })//end of beforeEach
+    it("Will successfully submit form order", function(){
+        cy.get('input[name="name"]')
+          .type("Rachele Edwards")
+          .should("have.value", "Rachele Edwards")
+        cy.get('[name="size"]')
+          .select('Large 12"')
+          .should("have.value", 'Large 12"')
+        cy.get('[data-cy=pepperoni]').click()
+        cy.get('[data-cy=sausage]').click()
+        cy.get('[data-cy=cheese]').click()
+        cy.get('textarea')
+          .type("Please yell: 'TINA, YOUR PIZZA'S HERE!")
+          .should("have.value", "Please yell: 'TINA, YOUR PIZZA'S HERE!")
+        cy.get('[data-cy=submit]').click()
+    })//end of it function
+
+})//end of describe

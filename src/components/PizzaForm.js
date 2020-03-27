@@ -120,7 +120,7 @@ const inputChange = e => {
             </label><br/><br/>
 
             <label htmlFor="size">Crust Size: &nbsp;
-                <select id="size" name="size" value={form} onChange={inputChange}>
+                <select id="size" name="size" value={form.size} onChange={inputChange}>
                     <option>Personal 6"</option>
                     <option>Medium 10"</option>
                     <option>Large 12"</option>
@@ -143,7 +143,7 @@ const inputChange = e => {
                 onChange={inputChange}
                 />
             </label><br/><br/>
-            <button disabled={disableButton} type="submit">Add to Order!</button>
+            <button disabled={disableButton} data-cy="submit">Add to Order!</button>
 
             {/* //make order show */}
             <pre>{JSON.stringify(submit, null, 2)}</pre>
