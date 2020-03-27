@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <p>Order pizza that's delivered right to your door</p>
       <button>
         <Route exact path = "/">
           <Home/>
