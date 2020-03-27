@@ -129,10 +129,10 @@ const inputChange = e => {
             </label><br/><br/>
             <fieldset>
                 <p>Choose your Toppings:</p>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings.pepperoni} onChange={inputChange}/>Pepperoni</label>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings.sausage} onChange={inputChange}/>Sausage</label>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings.onions} onChange={inputChange}/>Onions</label>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings.cheese} onChange={inputChange}/>Extra Cheese</label>
+                <label htmlFor="toppings">&nbsp;<input data-cy="pepperoni" type="checkbox" name="toppings" checked={form.toppings.pepperoni} onChange={inputChange}/>Pepperoni</label>
+                <label htmlFor="toppings">&nbsp;<input data-cy="sausage" type="checkbox" name="toppings" checked={form.toppings.sausage} onChange={inputChange}/>Sausage</label>
+                <label htmlFor="toppings">&nbsp;<input data-cy="onions" type="checkbox" name="toppings" checked={form.toppings.onions} onChange={inputChange}/>Onions</label>
+                <label htmlFor="toppings">&nbsp;<input data-cy="cheese" type="checkbox" name="toppings" checked={form.toppings.cheese} onChange={inputChange}/>Extra Cheese</label>
             </fieldset><br/>
         
              <label htmlFor="instructions">List any special instructions: &nbsp;
