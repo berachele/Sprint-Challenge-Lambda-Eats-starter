@@ -46,8 +46,8 @@ describe("Testing that we can submit form", function(){
         cy.get('[data-cy=sausage]').click()
         cy.get('[data-cy=cheese]').click()
         cy.get('textarea')
-          .type("Please yell: 'TINA, YOUR PIZZA'S HERE!")
-          .should("have.value", "Please yell: 'TINA, YOUR PIZZA'S HERE!")
+          .type("Please include extra garlic sauce")
+          .should("have.value", "Please include extra garlic sauce")
         cy.get('[data-cy=submit]').click()
     })//end of it function
 
