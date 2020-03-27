@@ -49,6 +49,6 @@ describe("Testing that we can submit form", function(){
 describe("Stretch test: going from Home page to Form", function(){
       it("Will visit home page, and click on link to go to form page", function(){
         cy.visit("http://localhost:3000")
-        cy.get('[data.cy=order]').click()
+        cy.get('[data-cy=order]').click()
       })
 })//end of describe

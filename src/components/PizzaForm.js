@@ -72,7 +72,7 @@ const submitForm = e => {
     axios
     .post("https://reqres.in/api/users", form)
     .then(response => {
-        setSubmit([...submit, response.data])
+        setSubmit(response.data)
         console.log("Success!", submit)
 
         //reset form
