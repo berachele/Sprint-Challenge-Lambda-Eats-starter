@@ -4,12 +4,10 @@ import axios from "axios"
 
 //setup Schema
 const formSchema = yup.object().shape({
-    name: yup.string().required("Name is a required field").min(2),
+    name: yup.string().required("Name is a required field").min(2, "Minimum of 2 characters"),
     size: yup.string(),
-    pepperoni: yup.boolean().oneOf([true], "Please choose at lease one topping"),
-    sausage: yup.boolean().oneOf([true], "Please choose at lease one topping"),
-    onions: yup.boolean().oneOf([true], "Please choose at lease one topping"),
-    cheese: yup.boolean().oneOf([true], "Please choose at lease one topping")
+    toppings: yup.boolean().oneOf([true]),
+    instructions: yup.string()
 })
 
 function PizzaForm() {
@@ -17,10 +15,7 @@ function PizzaForm() {
 const [form, setForm] = useState({
     name: "",
     size: "",
-    pepperoni:"",
-    sausage:"",
-    onions:"",
-    cheese:"",
+    toppings:"",
     instructions:""
 })
 
@@ -28,10 +23,7 @@ const [form, setForm] = useState({
 const [errors, setErrors] = useState({
     name: "",
     size: "",
-    pepperoni:"",
-    sausage:"",
-    onions:"",
-    cheese:"",
+    toppings:"",
     instructions:""
 })
 
@@ -70,16 +62,14 @@ const submitForm = e => {
     axios
     .post("https://reqres.in/api/users", form)
     .then(response => {
+        setSubmit([...submit, response.data])
         console.log("Success!", submit)
 
         //reset form
         setForm({
             name: "",
             size: "",
-            pepperoni:"",
-            sausage:"",
-            onions:"",
-            cheese:"",
+            toppings:"",
             instructions:""
         })
     })
@@ -102,7 +92,7 @@ const inputChange = e => {
 //return statement for Form
     return(
         //add value and onChange later
-        <form>
+        <form onSubmit={submitForm}>
             <label htmlFor="name">Name: &nbsp;
                 <input 
                 id="name"
@@ -111,6 +101,7 @@ const inputChange = e => {
                 value={form.name}
                 onChange={inputChange}
                 />
+                {errors.name.length > 0 ? (<p className="error">{errors.name}</p>): null}
             </label><br/><br/>
 
             <label htmlFor="size">Crust Size: &nbsp;
@@ -123,10 +114,10 @@ const inputChange = e => {
             </label><br/><br/>
             <fieldset>
                 <p>Choose your Toppings:</p>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.pepperoni} onChange={inputChange}/>Pepperoni</label>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.sausage} onChange={inputChange}/>Sausage</label>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.onions} onChange={inputChange}/>Onions</label>
-                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.cheese} onChange={inputChange}/>Extra Cheese</label>
+                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings} onChange={inputChange}/>Pepperoni</label>
+                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings} onChange={inputChange}/>Sausage</label>
+                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings} onChange={inputChange}/>Onions</label>
+                <label htmlFor="toppings">&nbsp;<input type="checkbox" name="toppings" checked={form.toppings} onChange={inputChange}/>Extra Cheese</label>
             </fieldset><br/>
         
              <label htmlFor="instructions">List any special instructions: &nbsp;
@@ -138,6 +129,9 @@ const inputChange = e => {
                 />
             </label><br/><br/>
             <button disabled={disableButton} type="submit">Add to Order!</button>
+
+            {/* //make order show */}
+            <pre>{JSON.stringify(submit, null, 2)}</pre>
         </form>
     )
 }
